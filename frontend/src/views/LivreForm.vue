@@ -25,14 +25,21 @@
         <label for="auteur" class="block text-sm font-medium text-gray-700">
           Auteur :
         </label>
-        <input
+        <select v-model="livre.auteur" required class="form-select">
+          <option>------------------------</option>
+          <option v-for="auteur in auteurs" :key="auteur.id" :value="auteur.id">
+            {{ auteur.nom }}
+          </option>
+        </select>
+
+        <!-- <input
           type="text"
           id="auteur"
           v-model="livre.auteur"
           required
           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
           placeholder="Entrez l'auteur du livre"
-        />
+        /> -->
       </div>
 
       <div class="mb-4">
@@ -49,6 +56,13 @@
           placeholder="Entrez la quantité"
         />
       </div>
+      <input
+        type="file"
+        id="image"
+        @change="handleFileUpload"
+        accept="image/*"
+        class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+      />
 
       <button
         @click="$emit('addLivreTolist')"
@@ -83,6 +97,8 @@ const livre = reactive({
   titre: "",
   auteur: "",
   quantity: "",
+  mage_profile: "",
+  genre: "",
 });
 
 const isSuccess = ref(false);

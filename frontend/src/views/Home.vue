@@ -1,52 +1,49 @@
-
-
 <template>
-  <div class="carousel"> 
+  <div class="carousel">
     <div class="carousel-inner">
-      <div class="carousel-item" v-for="(item, index) in slides " key="item.id" :class="{'active':currentIndex === index}">
-        <img :src="item.chr" alt="" class="max-w-full h-auto object-cover">
+      <div
+        class="carousel-item"
+        v-for="(item, index) in slides"
+        key="item.id"
+        :class="{ active: currentIndex === index }"
+      >
+        <img :src="item.chr" alt="" class="max-w-full h-auto object-cover" />
       </div>
     </div>
-     <!-- Boutons de navigation -->
-     <button @click="prev" class="carousel-control-prev">&#10094;</button>
+    <!-- Boutons de navigation -->
+    <button @click="prev" class="carousel-control-prev">&#10094;</button>
     <button @click="next" class="carousel-control-next">&#10095;</button>
-
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref } from "vue";
 
-
-const slides=ref([
-  
-    {id:'1',chr:'/public/photo_2024-12-15_15-20-14.jpg'},
-    {id:'2',chr:'/public/photo_2024-12-15_15-20-03.jpg'},
-    {id:'3',chr:'/public/photo_2024-12-15_15-19-44.jpg'},
-    {id:'4',chr:'/public/photo_2024-12-15_15-19-55.jpg'},
-    {id:'5',chr:'/public/photo_2024-12-15_15-20-03.jpg'},
-    {id:'1',chr:'/public/photo_2024-12-15_15-20-14.jpg'},
-    {id:'2',chr:'/public/photo_2024-12-15_15-20-03.jpg'},
-    {id:'3',chr:'/public/photo_2024-12-15_15-19-44.jpg'},
-    {id:'4',chr:'/public/photo_2024-12-15_15-19-55.jpg'},
-    {id:'5',chr:'/public/photo_2024-12-15_15-20-03.jpg'},
-  
+const slides = ref([
+  { id: "1", chr: "./public/photo_2024-12-15_15-20-14.jpg" },
+  { id: "2", chr: "./public/photo_2024-12-15_15-20-03.jpg" },
+  { id: "3", chr: "./public/photo_2024-12-15_15-19-44.jpg" },
+  { id: "4", chr: "./public/photo_2024-12-15_15-19-55.jpg" },
+  { id: "5", chr: "./public/photo_2024-12-15_15-20-03.jpg" },
+  { id: "1", chr: "./public/photo_2024-12-15_15-20-14.jpg" },
+  { id: "2", chr: "./public/photo_2024-12-15_15-20-03.jpg" },
+  { id: "3", chr: "./public/photo_2024-12-15_15-19-44.jpg" },
+  { id: "4", chr: "./public/photo_2024-12-15_15-19-55.jpg" },
+  { id: "5", chr: "./public/photo_2024-12-15_15-20-03.jpg" },
 ]);
-const currentIndex = ref(0)
+const currentIndex = ref(0);
 
-const next=()=>{
-  currentIndex.value = (currentIndex.value+1) % slides.value.length;
-
+const next = () => {
+  currentIndex.value = (currentIndex.value + 1) % slides.value.length;
 };
-const prev = ()=>{
-  currentIndex.value =(currentIndex.value-1)%slides.value;
+const prev = () => {
+  currentIndex.value = (currentIndex.value - 1) % slides.value;
 };
-onMounted(()=>{
-  setInterval(()=>{
+onMounted(() => {
+  setInterval(() => {
     next();
-  },3000);
-})
-
+  }, 3000);
+});
 </script>
 
 <style scoped>

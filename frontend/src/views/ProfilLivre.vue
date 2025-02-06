@@ -1,8 +1,10 @@
 <template>
   <div v-if="livre">
-    <h1>{{ livre.titre }}</h1>
-    <p class="viole">Auteur: {{ livre.auteur }}</p>
-    <p class="viole">Quantité: {{ livre.quantity }}</p>
+    <h1 class="bg-green-600 text-center h-[100px] items-center">
+      {{ livre.titre }}
+    </h1>
+    <p class="viole">Auteur : {{ livre.auteur }}</p>
+    <p class="viole">Quantité : {{ livre.quantity }}</p>
   </div>
   <div v-else>
     <p>Chargement des données...</p>

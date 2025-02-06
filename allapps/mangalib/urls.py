@@ -19,14 +19,26 @@ app_name = "mangalib"
 # ]
 
 urlpatterns = [
-    path("", views.index_view, name="index"),
-    path("static/livres/", views.index_view, name="index"),
-    path("static/about/", views.index_view, name="index"),
-    path("static/", views.index_view, name="index"),
-    #  path("", views.index_view, name="index"),
+      path("", views.index_view, name="index"),
+        # livre
     path('livre/', views.allBooks), 
     path('livre/<int:livre_id>/',views.showBooks), 
     path('addBooks/',views.addBooks),
-    path('update/<int:id>/',views.updateBook),
-    path('delete/<int:id>/',views.delBook),
+    path('livre/update/<int:id>/',views.updateBook),
+    path('livre/delete/<int:id>/',views.delBook),
+    # auteur
+    path('author/add/',views.addAuthor),
+    # path('author/update/<int:id>/',views.updateAuthor),
+    # path('author/delete/<int:id>/',views.dellAuthor),
+
+    # categorie
+     path('category/add/',views.addCategory),
+    # path('category/update/<int:id>/',views.updateCategory),
+    # path('category/delete/<int:id>/',views.dellCategory),
+
+    # url vuejs
+     path("static/livres/", views.index_view, name="index"),
+         path("static/about/", views.index_view, name="index"),
+         path("static/", views.index_view, name="index"),
+        #  path("", views.index_view, name="index"),
 ]

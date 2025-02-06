@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Livre, Auteur
 from .forms import LivreForm
 from rest_framework.viewsets import ModelViewSet
-from .serializers import AuteurSrializer,LivreSerializer
+from .serializers import AuteurSerializer,LivreSerializer,CategorieSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
@@ -40,7 +40,6 @@ def addBooks(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
 @api_view(['PUT'])
 def updateBook(request,id):
     book = Livre.objects.get(id=id)
@@ -55,24 +54,39 @@ def delBook(request,id):
     book.delete()
     return Response('Livre supprime !!')
 
+@api_view(['POST'])
+def addAuthor(request):
+    serializer = AuteurSerializer(data = request.data,many=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(['POST'])
+def addCategory(request):
+    serializer = CategorieSerializer(data = request.data,many=True)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # def index(request):
 #     context = {
 #        "livres": livre.objects.all() }
 #     return render(request,"mangalib/index.html",context)
-#     """
-#     if request.method == 'POSt':
-#         form = SomeFrom(request.POST)
+    # """
+    # if request.method == 'POSt':
+    #     form = SomeFrom(request.POST)
 
-#         if form.is_valid ():
-#             return redirect("mangalib:index")
-#     else:
-#         form = SomeFrom()
-#     context = { "form": form}
-#     return render(request,"mangalib/index.html",context)
-#     """
+    #     if form.is_valid ():
+    #         return redirect("mangalib:index")
+    # else:
+    #     form = SomeFrom()
+    # context = { "form": form}
+    # return render(request,"mangalib/index.html",context)
+    # """
 
 # def show(request,livre_id): 
 #     context = {"livre": get_list_or_404(livre,pk=livre_id),

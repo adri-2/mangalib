@@ -3,7 +3,7 @@
     <!-- Bouton pour ouvrir la popup -->
     <button
       @click="showPopup = true"
-      class="bg-blue-500 text-white px-4 py-2 rounded"
+      class="bg-green-800 text-white px-4 py-2 rounded"
     >
       {{ buttonText }}
     </button>
@@ -43,7 +43,3 @@ const props = defineProps({
 // État local
 const showPopup = ref(false);
 </script>
-
-<style scoped>
-/* Ajoutez des styles spécifiques si nécessaire */
-</style>
