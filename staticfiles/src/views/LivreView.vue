@@ -9,7 +9,7 @@
       placeholder="Rechercher un livre..."
       class="border border-gray-300 p-2 rounded w-full max-w-md mx-auto block"
     />
-    <Popup><LivreForm @vue:updated="fetchLivres()" /></Popup>
+    <Popup><LivreForm @vue:updated="fetchLivres" /></Popup>
     <div
       class="max-w-2xl mx-auto px-4 py-6 lg:max-w-6xl grid grid-cols-1 gap-y-10 gap-x-8 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4"
     >
@@ -19,17 +19,17 @@
         :key="livre.id"
       >
         <img
-          :src="livre.cover_image || '/default-image.jpg'"
+          src="../../public/photo_2024-12-15_15-19-55.jpg"
           alt="Image du livre"
-          class="rounded-t-lg w-full h-64 object-cover"
+          class="rounded-t-lg"
         />
         <div class="p-4">
           <div class="flex mb-5">
             <h3 class="text-2xl text-gray-700 font-semibold">
-              {{ livre.title }}
+              {{ livre.titre }}
             </h3>
             <p class="mt-1 ml-auto text-lg font-medium text-gray-900">
-              {{ livre.category }}
+              {{ livre.quantity }}
             </p>
           </div>
           <RouterLink
@@ -41,24 +41,6 @@
         </div>
       </div>
     </div>
-
-    <!-- PAGINATION -->
-    <div class="flex justify-center space-x-4 mt-6">
-      <button
-        v-if="prev_page"
-        @click="fetchLivres(prev_page)"
-        class="px-4 py-2 bg-blue-600 text-white rounded-md"
-      >
-        Précédent
-      </button>
-      <button
-        v-if="next_page"
-        @click="fetchLivres(next_page)"
-        class="px-4 py-2 bg-blue-600 text-white rounded-md"
-      >
-        Suivant
-      </button>
-    </div>
   </div>
 </template>
 
@@ -68,19 +50,16 @@ import axios from "axios";
 import LivreForm from "./LivreForm.vue";
 import Popup from "../components/Popup.vue";
 
+const apiUrl = import.meta.env.VITE_API_URL;
 const livres = ref([]);
 const searchquery = ref("");
-const next_page = ref(null);
-const prev_page = ref(null);
 
 // Fonction pour récupérer les livres depuis l'API
-const fetchLivres = (url = "http://localhost:8000/api/manga/") => {
+const fetchLivres = () => {
   axios
-    .get(url)
+    .get(`${apiUrl}/livre/`)
     .then((response) => {
-      livres.value = response.data.results;
-      next_page.value = response.data.next;
-      prev_page.value = response.data.previous;
+      livres.value = response.data;
     })
     .catch((error) => {
       console.error(
@@ -94,7 +73,7 @@ const fetchLivres = (url = "http://localhost:8000/api/manga/") => {
 const livreFilter = computed(() => {
   return livres.value?.length
     ? livres.value.filter((item) =>
-        item.title.toLowerCase().includes(searchquery.value.toLowerCase())
+        item.titre.toLowerCase().includes(searchquery.value.toLowerCase())
       )
     : [];
 });

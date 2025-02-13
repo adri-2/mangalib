@@ -23,7 +23,7 @@ const livre = ref(null);
 onMounted(() => {
   const livreId = route.params.id;
   axios
-    .get(`${apiUrl}/api/manga/${livreId}/`)
+    .get(`${apiUrl}/livre/${livreId}/`)
     .then((response) => {
       livre.value = response.data;
     })
