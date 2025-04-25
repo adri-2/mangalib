@@ -11,8 +11,8 @@ const router = createRouter({
     { path: "/", name: "Home", component: Home },
     { path: "/about", name: "About", component: About },
     { path: "/livres", name: "Livres", component: LivreView },
-    { path: "/livre/:id", name: "livres", component: ProfilLivre },
-    { path: "/login", name: "Ligin", component: LoginView },
+    { path: "/manga/:id", name: "livres", component: ProfilLivre },
+    { path: "/login", name: "Login", component: LoginView },
   ],
 });
 

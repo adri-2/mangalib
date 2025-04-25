@@ -65,7 +65,8 @@ CORS_ALLOWED_ORIGINS = [
      'http://localhost:5173',
    
        'http://localhost:8080' ,
-        'http://localhost:8000' # Frontend Vue.js
+        # 'http://localhost:8000' # Frontend Vue.js
+        #  'http://localhost:3000' ,
 ]
 
 
@@ -133,7 +134,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'assets/'
 STATICFILES_DIRS = [
     BASE_DIR / "frontend" / "dist",
 ]
@@ -145,7 +146,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"  # Dossier où collectstatic rassemblera 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
-    'PAGE_SIZE': 12
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+#     'PAGE_SIZE': 12
+# }
+MEDIA_URL = '/mangas/'
+MEDIA_ROOT = BASE_DIR / 'mangas'

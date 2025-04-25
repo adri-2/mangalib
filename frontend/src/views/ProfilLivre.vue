@@ -1,10 +1,10 @@
 <template>
   <div v-if="livre">
     <h1 class="bg-green-600 text-center h-[100px] items-center">
-      {{ livre.titre }}
+      {{ livre.title }}
     </h1>
-    <p class="viole">Auteur : {{ livre.auteur }}</p>
-    <p class="viole">Quantité : {{ livre.quantity }}</p>
+    <p class="viole">Auteur : {{ livre.author }}</p>
+    <p class="viole">Quantité : {{ livre.description }}</p>
   </div>
   <div v-else>
     <p>Chargement des données...</p>
@@ -23,7 +23,7 @@ const livre = ref(null);
 onMounted(() => {
   const livreId = route.params.id;
   axios
-    .get(`${apiUrl}/api/manga/${livreId}/`)
+    .get(`http://localhost:8000/api/manga/${livreId}/`)
     .then((response) => {
       livre.value = response.data;
     })

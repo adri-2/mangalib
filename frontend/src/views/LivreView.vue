@@ -21,19 +21,19 @@
         <img
           :src="livre.cover_image || '/default-image.jpg'"
           alt="Image du livre"
-          class="rounded-t-lg w-full h-64 object-cover"
+          class="rounded-t-lg w-full h-60 object-cover"
         />
         <div class="p-4">
           <div class="flex mb-5">
             <h3 class="text-2xl text-gray-700 font-semibold">
               {{ livre.title }}
             </h3>
-            <p class="mt-1 ml-auto text-lg font-medium text-gray-900">
-              {{ livre.category }}
-            </p>
+            <!-- <p class="mt-1 ml-auto text-lg font-medium text-gray-900">
+              {{ livre.date }}
+            </p> -->
           </div>
           <RouterLink
-            :to="`/manga/${livre.id}`"
+            :to="`manga/${livre.id}`"
             class="text-gray-100 text-lg font-center justify-between px-5 py-1 shadow-sm font-medium rounded-md bg-red-600 flex items-center"
           >
             <span class="text-gray-100">Voir</span>
@@ -78,7 +78,7 @@ const fetchLivres = (url = "http://localhost:8000/api/manga/") => {
   axios
     .get(url)
     .then((response) => {
-      livres.value = response.data.results;
+      livres.value = response.data;
       next_page.value = response.data.next;
       prev_page.value = response.data.previous;
     })
